@@ -217,6 +217,37 @@ public class MainActivity extends AppCompatActivity {
         equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (cuentas.getText().equals("") || cuentas.getText().equals("Cuentas")) {
+                    Toast.makeText(MainActivity.this, "No hay nada para operar", Toast.LENGTH_LONG).show();
+                } else {
+                    /*
+                     nums2 = Double.parseDouble((String) cuentas.getText());
+            if (controladorOperacion != -1) {
+                switch (controladorOperacion) {
+                    case 1:
+                        numsResult = nums1 + nums2;
+                        resultado.setText(Double.toString(numsResult));
+                        nums1 = numsResult;
+                        controladorOperacion = numOperacion;
+                        cuentas.setText("");
+
+                        break;
+                     */
+                    try {
+                        nums2 = Double.parseDouble((String) cuentas.getText());
+
+                        if (controladorOperacion != -1) {
+                            operar(controladorOperacion);
+                        }
+                        if (controladorOperacion == -1 && !vacio()){
+                            resultado.setText(cuentas.getText());
+                            cuentas.setText("");
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(MainActivity.this, "No hay numero para procesar", Toast.LENGTH_LONG).show();
+
+                    }
+                }
 
             }
         });
@@ -274,17 +305,6 @@ public class MainActivity extends AppCompatActivity {
                         } catch (IllegalArgumentException e) {
                             Toast.makeText(MainActivity.this, "No se puede dividir por 0", Toast.LENGTH_LONG).show();
                         }
-
-                    case 0:
-                        if (controladorOperacion != 0) {
-                            operar(numOperacion);
-                            controladorOperacion = -1;
-                            cuentas.setText("Cuentas");
-                        } else {
-                            Toast.makeText(MainActivity.this, "La operación ya está ejecutada", Toast.LENGTH_LONG).show();
-                        }
-
-                        break;
                 }
 
             } else {
@@ -293,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 cuentas.setText("");
             }
         } catch (NumberFormatException e) {
-            Toast.makeText(MainActivity.this, "No hay numero al cual sumar", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "No hay numero para procesar", Toast.LENGTH_LONG).show();
 
         }
     }
