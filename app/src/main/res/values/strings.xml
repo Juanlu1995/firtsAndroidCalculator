@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Calculadora</string>
     <string name="result">Resultado!</string>
+    <string name="cuentas">Cuentas</string>
 </resources>
